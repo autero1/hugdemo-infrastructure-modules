@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HUG the Pets in ${environment}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            font: 100%/1.7 "Avenir Next", sans-serif;
+        }
+
+        body {
+            padding: 1em 2em;
+        }
+
+        ol {
+            margin: 0 0 1.5em;
+            padding: 0;
+            counter-reset: item;
+        }
+
+        ol>li {
+            margin: 0;
+            padding: 0 0 0 2em;
+            text-indent: -2em;
+            list-style-type: none;
+            counter-increment: item;
+        }
+
+        ol>li:before {
+            display: inline-block;
+            width: 1em;
+            padding-right: 0.5em;
+            font-weight: bold;
+            text-align: right;
+            content: counter(item) ".";
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+</head>
+
+<body translate="no">
+    <h1>Pets loaded from the ${environment} API</h1>
+    <script id="rendered-js">
+        var articleList = document.createElement('ol');
+        document.body.appendChild(articleList);
+
+        var request = new XMLHttpRequest();
+        request.open('GET', '${url}', true);
+
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                var resp = JSON.parse(request.responseText);
+                for (i in resp.Items) {
+                    articleList.insertAdjacentHTML('beforeend', '<li>' + resp.Items[i].name + '</li>');
+                }
+            } else {
+                console.log('We reached our target server, but it returned an error');
+            }
+        };
+
+        request.onerror = function () {
+            console.log('There was a connection error of some sort');
+        };
+
+        request.send();
+    </script>
+</body>
+
+</html>
