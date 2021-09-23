@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/autero1/hugdemo-infrastructure-modules/compare/v0.1.0...v0.1.1) (2021-09-23)
+
+
+### Features
+
+* **site:** change text ([78e1e06](https://github.com/autero1/hugdemo-infrastructure-modules/commit/78e1e0656d244ebb307cebf305d61f18ff90751f))
+
 ## [0.1.0](https://github.com/autero1/hugdemo-infrastructure-modules/compare/v0.0.1...v0.1.0) (2021-09-22)
 
 
